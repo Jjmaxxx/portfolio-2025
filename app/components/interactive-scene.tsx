@@ -5,6 +5,7 @@ import { useFrame, useThree } from "@react-three/fiber"
 import { Environment, Float, Trail, Stars } from "@react-three/drei"
 import { Vector3, Color } from "three"
 import type * as THREE from "three"
+import { createDropdownMenuScope } from "@radix-ui/react-dropdown-menu"
 
 export default function InteractiveScene() {
   const meshRef = useRef<THREE.Mesh>(null)
@@ -14,7 +15,47 @@ export default function InteractiveScene() {
   const { mouse, viewport, size } = useThree()
   const [hovered, setHovered] = useState(false)
   const [scaleFactor, setScaleFactor] = useState(1)
+  const [isVisible, setIsVisible] = useState(true)
+  const [isDragging, setIsDragging] = useState(false)
+  const isReleased = useRef(false)
+  const lastMousePos = useRef({ x: 0, y: 0 })
+  const dragVelocity = useRef({ x: 0, y: 0 })
+  const idleRotation = useRef({ x: 0.005, y: 0.01 })
+  const blendFactor = useRef(0)
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsVisible(document.visibilityState === "visible")
+    }
+
+    document.addEventListener("visibilitychange", handleVisibilityChange)
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange)
+    }
+  }, [])
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const dx = e.clientX - lastMousePos.current.x
+      const dy = e.clientY - lastMousePos.current.y
+      dragVelocity.current = { x: dx, y: dy }
+      lastMousePos.current = { x: e.clientX, y: e.clientY }
+    }
+
+    const handleMouseUp = () => {
+      setIsDragging(false)
+      isReleased.current = true
+    }
+
+    if (isDragging) {
+      window.addEventListener("mousemove", handleMouseMove)
+      window.addEventListener("mouseup", handleMouseUp)
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("mouseup", handleMouseUp)
+    }
+  }, [isDragging])
   // Calculate responsive scale factor based on screen size
   useEffect(() => {
     const updateScale = () => {
@@ -65,24 +106,50 @@ export default function InteractiveScene() {
   }, [])
 
   useFrame((state) => {
+    if (!isVisible) return 
     if (meshRef.current && groupRef.current && orbitGroupRef.current) {
       // Automatic rotation for main shape
-      meshRef.current.rotation.x += 0.005
-      meshRef.current.rotation.y += 0.01
 
+      if (isDragging) {
+        // Apply live drag rotation
+        meshRef.current.rotation.y += dragVelocity.current.x * 0.002
+        meshRef.current.rotation.x += dragVelocity.current.y * 0.002
+        blendFactor.current = 0
+      } else if (isReleased.current) {
+        // Continue rotation with momentum after release
+        meshRef.current.rotation.y += dragVelocity.current.x * 0.002
+        meshRef.current.rotation.x += dragVelocity.current.y * 0.002
+
+        dragVelocity.current.x *= 0.96
+        dragVelocity.current.y *= 0.96
+
+        // Stop when velocity is negligible
+        if (
+          Math.abs(dragVelocity.current.x) < 1 &&
+          Math.abs(dragVelocity.current.y) < 1
+        ) {
+          isReleased.current = false
+        }
+        blendFactor.current = 0
+      } else {
+        // Idle auto-rotation
+        blendFactor.current = Math.min(blendFactor.current + 0.05, 1)
+        meshRef.current.rotation.x += idleRotation.current.x * blendFactor.current
+        meshRef.current.rotation.y += idleRotation.current.y * blendFactor.current
+      }
       // Gentle floating animation for the main group
       groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.1
 
       // Scale on hover with responsive scaling
-      const baseScale = 1.5 * scaleFactor
-      const targetScale = hovered ? baseScale * 1.2 : baseScale
+      const baseScale = 1.2 * scaleFactor
+      const targetScale = hovered ? baseScale * 1.1 : baseScale
       meshRef.current.scale.lerp(new Vector3(targetScale, targetScale, targetScale), 0.1)
 
       // Update orbiting shapes to move like planets with responsive scaling
       orbitingShapes.forEach((shape, index) => {
-        const trailGroup = orbitGroupRef.current!.children[index]
-        const mesh = trailGroup.children[0] as THREE.Mesh
-
+        // const trailGroup = orbitGroupRef.current!.children[index]
+        // const mesh = trailGroup.children[0] as THREE.Mesh
+        const mesh = orbitGroupRef.current!.children[index] as THREE.Mesh
         // Calculate orbital position with responsive radius
         const time = state.clock.elapsedTime
         const angle = time * shape.speed + shape.initialAngle
@@ -92,7 +159,7 @@ export default function InteractiveScene() {
         const y = shape.height * scaleFactor + Math.sin(time * 0.3 + index) * 0.2 * scaleFactor
 
         // Update position
-        trailGroup.position.set(x, y, z)
+        mesh.position.set(x, y, z) //trailGroup
 
         // Individual rotation
         mesh.rotation.x += 0.01 + index * 0.002
@@ -195,7 +262,20 @@ export default function InteractiveScene() {
       {/* Main shape - simple wireframe sphere */}
       <group ref={groupRef}>
         <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.2}>
-          <mesh ref={meshRef} onPointerEnter={() => setHovered(true)} onPointerLeave={() => setHovered(false)}>
+            <mesh
+              ref={meshRef}
+              onPointerEnter={() => {setHovered(true); document.body.style.cursor = "grab"}}
+              onPointerLeave={() => {setHovered(false); document.body.style.cursor = "default"}}
+              onPointerDown={(e) => {
+                e.stopPropagation()
+                document.body.style.cursor = "grabbing"
+                setIsDragging(true)
+                lastMousePos.current = { x: e.clientX, y: e.clientY }
+              }}
+              onPointerUp={() => {
+                document.body.style.cursor = "grab"
+              }}
+            >
             <sphereGeometry args={[1.5, 8, 6]} />
             <meshStandardMaterial color={hovered ? "#8b5cf6" : "#3b82f6"} wireframe transparent opacity={0.8} />
           </mesh>
@@ -205,12 +285,12 @@ export default function InteractiveScene() {
       {/* Orbiting simple shapes with trails */}
       <group ref={orbitGroupRef}>
         {orbitingShapes.map((shape, i) => (
-          <Trail key={i} width={0.3 * scaleFactor} length={6} color={new Color("white")} attenuation={(width) => width}>
-            <mesh>
+          // <Trail key={i} width={0.3 * scaleFactor} length={6} color={new Color("white")} attenuation={(width) => width}>
+            <mesh key={i}>
               {renderSimpleShape(shape.type)}
               <meshStandardMaterial color={shape.color} wireframe transparent opacity={0.6} />
             </mesh>
-          </Trail>
+          // </Trail>
         ))}
       </group>
     </>
