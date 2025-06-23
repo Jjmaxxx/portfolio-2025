@@ -1,29 +1,32 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react";
 
 export default function HeroSection() {
-  const titleRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in")
+            entry.target.classList.add("animate-fade-in");
           }
-        })
+        });
       },
       { threshold: 0.1 },
-    )
+    );
 
-    if (titleRef.current) observer.observe(titleRef.current)
-    return () => observer.disconnect()
-  }, [])
+    if (titleRef.current) observer.observe(titleRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4">
-      <div ref={titleRef} className="text-center opacity-0 transform translate-y-10 relative z-10 max-w-4xl">
+      <div
+        ref={titleRef}
+        className="text-center opacity-0 transform translate-y-10 relative z-10 max-w-4xl"
+      >
         <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 relative">
           <span className="animated-gradient-text">Justin Lee</span>
         </h1>
@@ -32,5 +35,5 @@ export default function HeroSection() {
         </p>
       </div>
     </div>
-  )
+  );
 }
