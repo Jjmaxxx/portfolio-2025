@@ -3,7 +3,7 @@
 import { useRef, useState, useMemo, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Environment, Float, Trail, Stars } from "@react-three/drei";
-import { Vector3, Color } from "three";
+import { Vector3, Color, MathUtils } from "three";
 import type * as THREE from "three";
 
 export default function InteractiveScene() {
@@ -23,6 +23,7 @@ export default function InteractiveScene() {
   const blendFactor = useRef(0);
   const manualElapsed = useRef(0);
   const lastFrame = useRef<number | null>(null);
+  const [hoverOrbitIndex, setHoverOrbitIndex] = useState<number | null>(null);
   const draggedOrbitIndex = useRef<number | null>(null);
   const globalLerp = useRef(0.03);
 
@@ -210,9 +211,10 @@ export default function InteractiveScene() {
         mesh.rotation.x += 0.01 + index * 0.002;
         mesh.rotation.y += 0.008 + index * 0.001;
 
-        // Scale the orbiting shapes responsively
-        const responsiveScale = shape.scale * scaleFactor;
-        mesh.scale.setScalar(responsiveScale);
+        const targetScale =
+          (hoverOrbitIndex === index ? shape.scale * 1.2 : shape.scale) * scaleFactor;
+        shape.currentScale = MathUtils.lerp(shape.currentScale, targetScale, 0.1);
+        mesh.scale.setScalar(shape.currentScale);
       });
     }
   });
@@ -305,7 +307,8 @@ const initialShapes = [
     isDragged: false,
     velocity: new Vector3(),
     position: new Vector3(),
-    targetPosition: new Vector3()
+    targetPosition: new Vector3(),
+    currentScale: shape.scale
   }))).current;
 
 const renderSimpleShape = (type: string) => {
@@ -320,6 +323,19 @@ const renderSimpleShape = (type: string) => {
       return <boxGeometry args={[1, 1, 1]} />;
   }
 };
+function lightenColor(hex: string, percent: number): string {
+  const amt = Math.round(255 * percent);
+  return (
+    "#" +
+    hex
+      .replace(/^#/, "")
+      .match(/.{2}/g)!
+      .map((c) =>
+        Math.min(255, parseInt(c, 16) + amt).toString(16).padStart(2, "0")
+      )
+      .join("")
+  );
+}
 
   return (
     <>
@@ -375,9 +391,11 @@ const renderSimpleShape = (type: string) => {
               <mesh
                 onPointerEnter={() => {
                   document.body.style.cursor = "grab";
+                  setHoverOrbitIndex(i);
                 }}
                 onPointerLeave={() => {
                   document.body.style.cursor = "default";
+                  setHoverOrbitIndex(null);
                 }}
                 onPointerDown={(e) => {
                   e.stopPropagation();
@@ -394,10 +412,14 @@ const renderSimpleShape = (type: string) => {
               >
                 {renderSimpleShape(shape.type)}
                 <meshStandardMaterial
-                  color={shape.color}
                   wireframe
                   transparent
                   opacity={0.6}
+                  color={
+                    hoverOrbitIndex === i
+                      ? lightenColor(shape.color, 0.2)
+                      : shape.color
+                  }
                 />
               </mesh>
             </Trail>

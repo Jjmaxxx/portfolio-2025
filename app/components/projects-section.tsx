@@ -41,7 +41,7 @@ const projects = [
   {
     title: "Discord Standup Bot",
     description:
-      "Managing agile standups. Create groups, collect team updates via DMs, and get AI-powered summaries.",
+      "Automatic agile standups. Create groups, collect team updates via DMs, and get AI-powered summaries.",
     image: "/project-images/standup-bot.png",
     tech: ["Python", "SQLite", "Discord API", "OpenAI API"],
     github: "https://github.com/Jjmaxxx/discord-standup-bot"
