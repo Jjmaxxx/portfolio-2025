@@ -12,7 +12,7 @@ RUN pnpm install
 # build stage
 COPY . .
 
-RUN npm run build
+RUN pnpm run build
 
 # run
 EXPOSE 3000
