@@ -1,0 +1,18 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf
+
+  client:
+    build:
+      context: ./next-app
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./next-app:/app
+      - /app/node_modules
+    restart: always

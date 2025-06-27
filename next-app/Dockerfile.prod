@@ -1,0 +1,20 @@
+FROM node:20.17
+
+WORKDIR /app
+
+# install stage
+COPY pnpm-lock.yaml pnpm-lock.yaml
+COPY package.json package.json
+RUN npm install -g pnpm
+
+RUN npm ci
+RUN pnpm install
+
+# build stage
+COPY . .
+
+RUN npm run build
+
+# run
+EXPOSE 3000
+CMD [ "npm", "start" ]
