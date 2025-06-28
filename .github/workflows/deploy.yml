@@ -21,6 +21,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.OCI_HOST }} "
             cd ~/projects/portfolio-2025 &&
+            git pull &&
             chmod +x ./runserver.sh &&
             ./runserver.sh
           "
