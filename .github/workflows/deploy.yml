@@ -21,7 +21,8 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.OCI_HOST }} "
             cd ~/projects/portfolio-2025 &&
-            git pull &&
+            git fetch origin &&
+            git reset --hard origin/main &&
             chmod +x ./runserver.sh &&
             ./runserver.sh
           "
