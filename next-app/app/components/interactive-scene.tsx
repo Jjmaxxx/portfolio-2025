@@ -340,7 +340,7 @@ function lightenColor(hex: string, percent: number): string {
   return (
     <>
       <Environment preset="city" />
-      <ambientLight intensity={0.3} />
+      <ambientLight intensity={0.4} />
 
       {/* Main shape - simple wireframe sphere */}
       <group ref={groupRef}>
