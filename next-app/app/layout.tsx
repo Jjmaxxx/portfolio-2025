@@ -11,12 +11,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://justin-lee.me"),
   openGraph: {
     title: "Justin Lee's Portfolio",
-    description: "Explore tech projects built by me.",
+    description: "Explore my projects!",
     url: "https://justin-lee.me",
-    siteName: "Justin Lee Portfolio",
     images: [
       {
-        url: "/preview.png",
+        url: "/buggah.png",
         width: 1200,
         height: 630,
         alt: "Justin Lee Portfolio",
