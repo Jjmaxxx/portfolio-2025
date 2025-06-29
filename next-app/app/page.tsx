@@ -50,10 +50,8 @@ export default function Portfolio() {
       ) : (
         <section className="h-screen relative overflow-hidden">
           <Canvas dpr={[1,2.0]}  gl={{ powerPreference: "high-performance" }} camera={{ position: [0, 0, 5], fov: 60 }}>
-            <Suspense fallback={<Loader />}>
-              <StarsBackground />
-              <InteractiveScene />
-            </Suspense>
+            <StarsBackground />
+            <InteractiveScene />
           </Canvas>
           <HeroSection />
         </section>

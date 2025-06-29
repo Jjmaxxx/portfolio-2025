@@ -32,22 +32,9 @@ export default function Loader({ duration = 1.0 }: LoaderProps) {
       <div className="relative w-full flex justify-center">
         
         <div className="relative w-[70vw] max-w-[32rem] h-10 sm:px-0 bg-transparent border border-gray-600/50 rounded-sm overflow-hidden">
-          <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="w-full h-full bg-blue-500/20 blur-xl scale-110 rounded-sm" />
-          </div>
-          <div
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: `repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 6px,
-                rgba(255, 255, 255, 0.1) 6px,
-                rgba(255, 255, 255, 0.1) 7px
-              )`,
-            }}
-          />
-
+          </div> */}
           <div
             className="h-full transition-all duration-100 ease-out relative overflow-hidden"
             style={{
