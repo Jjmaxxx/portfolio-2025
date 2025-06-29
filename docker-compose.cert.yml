@@ -12,4 +12,4 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
-    command: certonly --webroot -w /var/www/certbot -d justin-lee.me --non-interactive --agree-tos -m justlee888@gmail.com
+    command: certonly --webroot -w /var/www/certbot -d justinlee.dev --non-interactive --agree-tos -m justlee888@gmail.com

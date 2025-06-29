@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Justin Lee" }],
   keywords: ["Justin Lee", "Portfolio", "Next.js", "Fullstack", "Cloud", "Developer"],
   creator: "Justin Lee",
-  metadataBase: new URL("https://justin-lee.me"),
+  metadataBase: new URL("https://justinlee.dev"),
   openGraph: {
     title: "Justin Lee's Portfolio",
     description: "Explore my projects!",
-    url: "https://justin-lee.me",
+    url: "https://justinlee.dev",
     images: [
       {
         url: "/buggah.png",
