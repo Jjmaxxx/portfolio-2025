@@ -3,9 +3,29 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Justin Lee's Portfolio",
-  description: "Next.js, Three.js, TailwindCSS, ShadCN",
+  description: "Made with Next.js, Three.js, TailwindCSS",
+  applicationName: "Justin Lee Portfolio",
+  authors: [{ name: "Justin Lee" }],
+  keywords: ["Justin Lee", "Portfolio", "Next.js", "Fullstack", "Cloud", "Developer"],
+  creator: "Justin Lee",
+  metadataBase: new URL("https://justin-lee.me"),
+  openGraph: {
+    title: "Justin Lee's Portfolio",
+    description: "Explore tech projects built by me.",
+    url: "https://justin-lee.me",
+    siteName: "Justin Lee Portfolio",
+    images: [
+      {
+        url: "/preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Justin Lee Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  }
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{

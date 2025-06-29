@@ -113,7 +113,7 @@ export default function ExperienceSection() {
     <section ref={sectionRef} id="experience" className="min-h-screen py-20 px-6 bg-gray-950 relative overflow-hidden">
       <div className="max-w-4xl mx-auto relative z-10">
         <h2 className="scroll-animate text-5xl font-bold text-center mb-16 opacity-0 transform translate-y-10">
-          <span className="text-blue-500">Experience</span>
+          <span className="text-blue-400">Experience</span>
         </h2>
 
         <div className="relative">

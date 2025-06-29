@@ -60,7 +60,7 @@ export default function TechSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <h2 className="scroll-animate text-5xl font-bold text-center mb-16 opacity-0 transform translate-y-10">
-          <span className="text-blue-500">Technologies & Skills</span>
+          <span className="text-blue-400">Technologies & Skills</span>
         </h2>
 
         {/* Auto-scrolling carousel with fixed height container */}

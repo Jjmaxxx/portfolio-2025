@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "../../components/ui/button";
+import Image from "next/image"
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
@@ -17,6 +17,9 @@ export default function Navigation() {
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
   }
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   return (
     <nav
@@ -26,30 +29,33 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
+          <div className="cursor-pointer" onClick={scrollToTop}>
+            <Image src="/buggah.png" alt="Logo" width={32} height={32} />
+          </div>
           <div className="text-2xl font-bold"></div>
           <div className="hidden md:flex space-x-8">
             {["Projects", "Experience", "Tech", "Contact"].map((item) => (
-              <Button
+              <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
                 className="hover:text-blue-400 transition-colors"
               >
                 {item}
-              </Button>
+              </button>
             ))}
-              {/* <Button
+              {/* <button
                 key={"About"}
                 className="hover:text-blue-400 transition-colors"
               >
                 About
-              </Button> */}
+              </button> */}
               <a href="/Justin-Lee-Resume.pdf" download target="_blank" rel="noopener noreferrer">
-                <Button
+                <button
                   key={"Resume"}
                   className="hover:text-blue-400 transition-colors"
                 >
                   Resume
-                </Button>
+                </button>
               </a>
           </div>
         </div>

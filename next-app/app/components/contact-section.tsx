@@ -34,7 +34,7 @@ export default function ContactSection() {
       className="py-20 px-6 bg-gray-950"
     >
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-blue-500 scroll-animate text-5xl font-bold mb-8 opacity-0 transform translate-y-10">
+        <h2 className="text-blue-400 scroll-animate text-5xl font-bold mb-8 opacity-0 transform translate-y-10">
           Let's Connect
         </h2>
 
