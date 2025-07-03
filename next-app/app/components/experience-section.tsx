@@ -12,11 +12,11 @@ const experiences = [
     description:
       "Building the MVP for a full stack web platform that helps farmers track, manage, and analyze agricultural data in real time.",
     achievements: [
-      "Designed and implemented 7+ responsive frontend pages using React.js and TailwindCSS, delivering key workflows",
-      "Refactored the Flask backend to modularize routes and optimize database connectivity, cutting endpoint times by 50%",
-      "Integrated PostgreSQL with GCP Cloud SQL to ensure scalable, cloud-native data persistence",
+      "Designed and implemented 7+ responsive frontend pages using React.js and TypeScript, delivering key workflows",
+      "Refactored a legacy Flask backend by decoupling tightly coupled components, introducing a DAO layer, and optimizing database access with a connection pool, reducing query times by over 70%",
+      "Deployed the full-stack app on Google Cloud Compute Engine with Dockerized NGINX, React, and Flask services, leveraging Google Artifact Registry and GCP Secrets Manager for secure, scalable deployment",
     ],
-    technologies: ["React.js", "Flask", "PostgreSQL", "GCP", "Docker", "TailwindCSS", "Shadcn"],
+    technologies: ["React.js", "TypeScript", "Flask", "PostgreSQL", "GCP", "Docker", "TailwindCSS", "Shadcn"],
   },
   {
     title: "Software Engineer Technical Lead",
@@ -28,7 +28,7 @@ const experiences = [
     achievements: [
       "Oversaw a team of 6 engineers, providing technical guidance, code reviews, and sprint planning support",
       "Built a CI/CD pipeline using GitHub Actions to deploy to AWS Fargate, saving 5+ minutes per deployment",
-      "Improved team velocity by eliminating manual deployment steps and integrating build/test automation"
+      "Improved team velocity by overseeing development workflows to maintain code quality and team efficiency"
     ],
     technologies: ["CI/CD", "GitHub Actions", "AWS Fargate", "Docker", "DevOps"],
   },
