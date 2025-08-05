@@ -5,20 +5,6 @@ import { Calendar, MapPin } from "lucide-react"
 
 const experiences = [
   {
-    title: "Software Engineer",
-    company: "Delta Labs AI",
-    location: "Remote",
-    period: "May 2025 - Present",
-    description:
-      "Building the MVP for a full stack web platform that helps farmers track, manage, and analyze agricultural data in real time.",
-    achievements: [
-      "Designed and implemented 7+ responsive frontend pages using React.js and TypeScript, delivering key workflows",
-      "Refactored a legacy Flask backend by decoupling tightly coupled components, introducing a DAO layer, and optimizing database access with a connection pool, reducing query times by over 70%",
-      "Deployed the full-stack app on Google Cloud Compute Engine with Dockerized NGINX, React, and Flask services, leveraging Google Artifact Registry and GCP Secrets Manager for secure, scalable deployment",
-    ],
-    technologies: ["React.js", "TypeScript", "Flask", "PostgreSQL", "GCP", "Docker", "TailwindCSS", "Shadcn"],
-  },
-  {
     title: "Software Engineer Technical Lead",
     company: "Arctex",
     location: "Remote",
@@ -31,6 +17,34 @@ const experiences = [
       "Improved team velocity by overseeing development workflows to maintain code quality and team efficiency"
     ],
     technologies: ["CI/CD", "GitHub Actions", "AWS Fargate", "Docker", "DevOps"],
+  },
+  {
+    title: "Software Engineer Intern",
+    company: "Cadence",
+    location: "San Jose, CA",
+    period: "Jul. 2025 - Aug. 2025",
+    description:
+      "Rebuilt a 5-year-old HTML-to-PDF generator to standardize and combine 70+ HTML files for the Technical Communications team, designed for production use in creating technical documents to Cadence's customers.",
+    achievements: [
+      "Proposed and implemented a scalable architecture by converting individual HTML files into PDFs before merging, enabling processing of 1,000,000+ lines of HTML without crashing headless browser tools like Playwright.",
+      "Engineered a dynamic table of contents system using PyMuPDF to locate and link bounding boxes of headings in the output PDF, ensuring clickable TOC links remained accurate across merged documents.",
+      "Optimized script runtime by over 60% through multiprocessing and efficient memory management, reducing generation time from ~20 minutes to under 8 minutes on large file sets."
+    ],
+    technologies: ["Python", "Playwright", "BeautifulSoup", "PyMuPDF", "PyPDF"],
+  },
+  {
+    title: "Software Engineer Intern",
+    company: "Delta Labs AI",
+    location: "Remote",
+    period: "May 2025 - July 2025",
+    description:
+      "Built the MVP for a full stack web platform that helps farmers track, manage, and analyze agricultural data in real time.",
+    achievements: [
+      "Built the entire frontend using React.js, TypeScript, and TailwindCSS, delivering 7+ responsive pages with modular architecture ensuring clean code organization, component reusability, and long-term scalability.",
+      "Refactored a legacy Flask backend by introducing a DAO layer and implementing connection pooling using psycopg2, significantly improving code modularity and reducing average query latency by over 70%.",
+      "Deployed a full-stack app on Google Cloud Compute Engine with Dockerized NGINX, React, and Flask services, using managed infrastructure like Cloud SQL and GCP Secrets Manager for secure, scalable deployment.",
+    ],
+    technologies: ["React.js", "TypeScript", "Flask", "PostgreSQL", "GCP", "Docker", "TailwindCSS", "Shadcn"],
   },
   {
     title: "Software Engineer (Contract)",
