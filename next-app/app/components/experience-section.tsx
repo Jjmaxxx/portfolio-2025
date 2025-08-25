@@ -19,20 +19,6 @@ const experiences = [
     technologies: ["React.js", "TypeScript", "Flask", "PostgreSQL", "GCP", "Docker", "TailwindCSS", "Shadcn"],
   },
   {
-    title: "Software Engineer Technical Lead",
-    company: "Arctex",
-    location: "Remote",
-    period: "May 2025 - Aug. 2025",
-    description:
-      "Took on a leadership role overseeing DevOps, CI/CD, and overall backend infrastructure, enabling faster and more reliable development cycles.",
-    achievements: [
-      "Oversaw a team of 6 engineers, providing technical guidance, code reviews, and sprint planning support",
-      "Built a CI/CD pipeline using GitHub Actions to deploy to AWS Fargate, saving 5+ minutes per deployment",
-      "Improved team velocity by overseeing development workflows to maintain code quality and team efficiency"
-    ],
-    technologies: ["CI/CD", "GitHub Actions", "AWS Fargate", "Docker", "DevOps"],
-  },
-  {
     title: "Software Engineer Intern",
     company: "Cadence",
     location: "San Jose, CA",
@@ -45,6 +31,20 @@ const experiences = [
       "Optimized script runtime by over 60% through multiprocessing and efficient memory management, reducing generation time from ~20 minutes to under 8 minutes on large file sets."
     ],
     technologies: ["Python", "Playwright", "BeautifulSoup", "PyMuPDF", "PyPDF"],
+  },
+  {
+    title: "Software Engineer Technical Lead",
+    company: "Arctex",
+    location: "Remote",
+    period: "May 2025 - Aug. 2025",
+    description:
+      "Took on a leadership role overseeing DevOps, CI/CD, and overall backend infrastructure, enabling faster and more reliable development cycles.",
+    achievements: [
+      "Oversaw a team of 6 engineers, providing technical guidance, code reviews, and sprint planning support",
+      "Built a CI/CD pipeline using GitHub Actions to deploy to AWS Fargate, saving 5+ minutes per deployment",
+      "Improved team velocity by overseeing development workflows to maintain code quality and team efficiency"
+    ],
+    technologies: ["CI/CD", "GitHub Actions", "AWS Fargate", "Docker", "DevOps"],
   },
   {
     title: "Software Engineer (Contract)",
