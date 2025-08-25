@@ -5,10 +5,24 @@ import { Calendar, MapPin } from "lucide-react"
 
 const experiences = [
   {
+    title: "Software Engineer Intern",
+    company: "Delta Labs AI",
+    location: "Remote",
+    period: "May 2025 - Present",
+    description:
+      "Built the MVP for a full stack web platform that helps farmers track, manage, and analyze agricultural data in real time.",
+    achievements: [
+      "Built the entire frontend using React.js, TypeScript, and TailwindCSS, delivering 7+ responsive pages with modular architecture ensuring clean code organization, component reusability, and long-term scalability.",
+      "Refactored a legacy Flask backend by introducing a DAO layer and implementing connection pooling using psycopg2, significantly improving code modularity and reducing average query latency by over 70%.",
+      "Deployed a full-stack app on Google Cloud Compute Engine with Dockerized NGINX, React, and Flask services, using managed infrastructure like Cloud SQL and GCP Secrets Manager for secure, scalable deployment.",
+    ],
+    technologies: ["React.js", "TypeScript", "Flask", "PostgreSQL", "GCP", "Docker", "TailwindCSS", "Shadcn"],
+  },
+  {
     title: "Software Engineer Technical Lead",
     company: "Arctex",
     location: "Remote",
-    period: "May 2025 - Present",
+    period: "May 2025 - Aug. 2025",
     description:
       "Took on a leadership role overseeing DevOps, CI/CD, and overall backend infrastructure, enabling faster and more reliable development cycles.",
     achievements: [
@@ -31,20 +45,6 @@ const experiences = [
       "Optimized script runtime by over 60% through multiprocessing and efficient memory management, reducing generation time from ~20 minutes to under 8 minutes on large file sets."
     ],
     technologies: ["Python", "Playwright", "BeautifulSoup", "PyMuPDF", "PyPDF"],
-  },
-  {
-    title: "Software Engineer Intern",
-    company: "Delta Labs AI",
-    location: "Remote",
-    period: "May 2025 - July 2025",
-    description:
-      "Built the MVP for a full stack web platform that helps farmers track, manage, and analyze agricultural data in real time.",
-    achievements: [
-      "Built the entire frontend using React.js, TypeScript, and TailwindCSS, delivering 7+ responsive pages with modular architecture ensuring clean code organization, component reusability, and long-term scalability.",
-      "Refactored a legacy Flask backend by introducing a DAO layer and implementing connection pooling using psycopg2, significantly improving code modularity and reducing average query latency by over 70%.",
-      "Deployed a full-stack app on Google Cloud Compute Engine with Dockerized NGINX, React, and Flask services, using managed infrastructure like Cloud SQL and GCP Secrets Manager for secure, scalable deployment.",
-    ],
-    technologies: ["React.js", "TypeScript", "Flask", "PostgreSQL", "GCP", "Docker", "TailwindCSS", "Shadcn"],
   },
   {
     title: "Software Engineer (Contract)",
