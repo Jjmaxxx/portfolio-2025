@@ -6,4 +6,4 @@ sudo docker compose -f docker-compose.prod.yml down --remove-orphans
 
 sudo docker compose -f docker-compose.cert.yml up --abort-on-container-exit --remove-orphans
 
-sudo docker compose -f docker-compose.prod.yml up -d --remove-orphans
+sudo docker compose -f docker-compose.prod.yml up -d --build --force-recreate --remove-orphans
