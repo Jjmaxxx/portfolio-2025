@@ -153,7 +153,7 @@ export default function ExperienceSection() {
 
               {/* Content */}
               <div className="ml-20">
-                <div className="bg-black/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-blue-500 transition-all duration-300 group">
+                <div className="bg-black/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-blue-500 transition-all duration-300 group min-w-[280px]">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                     <div>
                       <h3 className="text-xl font-semibold text-blue-400 group-hover:text-blue-300 transition-colors">
