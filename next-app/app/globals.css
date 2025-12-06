@@ -37,6 +37,8 @@
     -webkit-text-fill-color: transparent;
     animation: gradientShift 10s ease-in-out infinite;
     -webkit-text-stroke: 0.6px rgba(255, 255, 255, 0.08);
+    display: inline-block;
+    line-height: 1;
   }
 
   .text-shadow-enhanced {
