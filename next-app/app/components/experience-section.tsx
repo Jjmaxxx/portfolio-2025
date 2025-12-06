@@ -126,21 +126,24 @@ export default function ExperienceSection() {
   return (
     <section ref={sectionRef} id="experience" className="min-h-screen py-20 px-6 bg-gray-950 relative overflow-hidden">
       <div className="max-w-4xl mx-auto relative z-10">
-        <h2 className="scroll-animate text-5xl font-bold text-center mb-16 opacity-0 translate-y-10">
+        <h2 className="scroll-animate text-5xl font-bold text-center mb-16 opacity-0">
           <span className="text-blue-400">Experience</span>
         </h2>
 
         <div className="relative">
           {/* Animated Timeline line */}
-          <div className="absolute left-8bottom-0 w-px bg-gray-700"></div>
+          <div className="absolute left-[34px] top-[10px] bottom-[10px] w-px bg-gray-700"></div>
           <div
             ref={timelineRef}
-            className="absolute left-8 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-cyan-500 transition-all duration-300 ease-out"
-            style={{ height: `${scrollProgress}%` }}
+            className="absolute left-[34px] top-[10px] w-px bg-gradient-to-b from-blue-500 via-purple-500 to-cyan-500 transition-all duration-300 ease-out"
+            style={{ 
+              height: `${scrollProgress}%`,
+              maxHeight: 'calc(100% - 10px)'
+            }}
           ></div>
 
           {experiences.map((exp, index) => (
-            <div key={index} className="scroll-animate opacity-0 translate-y-10 relative mb-12 last:mb-0">
+            <div key={index} className="scroll-animate opacity-0 relative mb-12 last:mb-0 first:mt-0">
               {/* Timeline dot with animation */}
               <div
                 className={`absolute left-6 top-0 w-5 h-5 rounded-full border-4 border-gray-950 z-10 transition-all duration-500 ${
